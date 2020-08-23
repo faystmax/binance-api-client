@@ -40,6 +40,11 @@ public class BinanceApiClientImpl implements BinanceApiClient {
         execute(api.ping());
     }
 
+    @Override
+    public Long getServerTime() {
+        return execute(api.getServerTime()).getServerTime();
+    }
+
     private <T> T execute(Call<T> call) {
         try {
             Response<T> response = call.execute();
