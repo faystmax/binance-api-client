@@ -1,11 +1,11 @@
 package com.faystmax.binance.api.client.domain;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class ServerTime {
     /**
      * Time in milliseconds
      */
-    Long serverTime;
+    private Long serverTime;
 }

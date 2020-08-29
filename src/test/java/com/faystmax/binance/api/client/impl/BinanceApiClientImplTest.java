@@ -1,8 +1,10 @@
 package com.faystmax.binance.api.client.impl;
 
+import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BinanceApiClientImplTest {
@@ -22,5 +24,11 @@ class BinanceApiClientImplTest {
     void getServerTime_ok() {
         Long serverTime = apiClient.getServerTime();
         assertTrue(serverTime > 0);
+    }
+
+    @Test
+    void getExchangeInfo_ok() {
+        ExchangeInfo exchangeInfo = apiClient.getExchangeInfo();
+        assertNotNull(exchangeInfo);
     }
 }

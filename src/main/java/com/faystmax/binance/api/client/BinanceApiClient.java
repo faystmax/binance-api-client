@@ -1,5 +1,7 @@
 package com.faystmax.binance.api.client;
 
+import com.faystmax.binance.api.client.domain.ExchangeInfo;
+
 public interface BinanceApiClient {
     /**
      * Test connectivity to the Rest API
@@ -12,4 +14,9 @@ public interface BinanceApiClient {
      * @return server time in milliseconds
      */
     Long getServerTime();
+
+    /**
+     * @return Current exchange trading rules and symbol information
+     */
+    ExchangeInfo getExchangeInfo();
 }
