@@ -3,6 +3,7 @@ package com.faystmax.binance.api.client.impl;
 import com.faystmax.binance.api.client.BinanceApi;
 import com.faystmax.binance.api.client.BinanceApiClient;
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
+import com.faystmax.binance.api.client.domain.TickerStatistics;
 import com.faystmax.binance.api.client.exception.BinanceApiException;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -49,6 +50,11 @@ public class BinanceApiClientImpl implements BinanceApiClient {
     @Override
     public ExchangeInfo getExchangeInfo() {
         return execute(api.getExchangeInfo());
+    }
+
+    @Override
+    public TickerStatistics get24HrPriceStatistics(String symbol) {
+        return execute(api.get24HrPriceStatistics(symbol));
     }
 
     private <T> T execute(Call<T> call) {
