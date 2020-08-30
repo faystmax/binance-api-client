@@ -4,7 +4,9 @@ import com.faystmax.binance.api.client.BinanceApi;
 import com.faystmax.binance.api.client.BinanceApiClient;
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
+import com.faystmax.binance.api.client.domain.trade.Trade;
 import com.faystmax.binance.api.client.exception.BinanceApiException;
+import com.faystmax.binance.api.client.security.AuthenticationInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -13,6 +15,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
@@ -20,8 +23,9 @@ public class BinanceApiClientImpl implements BinanceApiClient {
     private static final String BASE_URL = "https://api.binance.com/";
     private final BinanceApi api;
 
-    public BinanceApiClientImpl(boolean enableLog) {
+    public BinanceApiClientImpl(String apiKey, String secret, boolean enableLog) {
         var httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(new AuthenticationInterceptor(apiKey, secret));
 
         if (enableLog) {
             var logging = new HttpLoggingInterceptor();
@@ -55,6 +59,11 @@ public class BinanceApiClientImpl implements BinanceApiClient {
     @Override
     public TickerStatistics get24HrPriceStatistics(String symbol) {
         return execute(api.get24HrPriceStatistics(symbol));
+    }
+
+    @Override
+    public List<Trade> getMyTrades(String symbol) {
+        return execute(api.getMyTrades(symbol, System.currentTimeMillis()));
     }
 
     private <T> T execute(Call<T> call) {

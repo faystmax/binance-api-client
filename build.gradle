@@ -24,6 +24,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'commons-codec:commons-codec:1.14'
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'

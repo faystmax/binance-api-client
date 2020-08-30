@@ -10,12 +10,12 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BinanceApiClientImplTest {
+class BinanceApiClientImplPublicTest {
     private static BinanceApiClientImpl apiClient;
 
     @BeforeAll
     public static void setUp() {
-        apiClient = new BinanceApiClientImpl(true);
+        apiClient = new BinanceApiClientImpl("", "", true);
     }
 
     @Test

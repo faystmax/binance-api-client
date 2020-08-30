@@ -1,11 +1,16 @@
 package com.faystmax.binance.api.client;
 
+import com.faystmax.binance.api.client.constant.BinanceApiConstants;
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.ServerTime;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
+import com.faystmax.binance.api.client.domain.trade.Trade;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Query;
+
+import java.util.List;
 
 public interface BinanceApi {
     @GET("/api/v3/ping")
@@ -19,4 +24,8 @@ public interface BinanceApi {
 
     @GET("/api/v3/ticker/24hr")
     Call<TickerStatistics> get24HrPriceStatistics(@Query("symbol") String symbol);
+
+    @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+    @GET("/api/v3/myTrades")
+    Call<List<Trade>> getMyTrades(@Query("symbol") String symbol, @Query("timestamp") Long timestamp);
 }
