@@ -4,6 +4,7 @@ import com.faystmax.binance.api.client.constant.BinanceApiConstants;
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.ServerTime;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
+import com.faystmax.binance.api.client.domain.account.Account;
 import com.faystmax.binance.api.client.domain.trade.Trade;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -28,4 +29,8 @@ public interface BinanceApi {
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @GET("/api/v3/myTrades")
     Call<List<Trade>> getMyTrades(@Query("symbol") String symbol, @Query("timestamp") Long timestamp);
+
+    @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+    @GET("/api/v3/account")
+    Call<Account> getAccount(@Query("timestamp") Long timestamp);
 }

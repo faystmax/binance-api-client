@@ -5,6 +5,7 @@ import com.faystmax.binance.api.client.BinanceApiClient;
 import com.faystmax.binance.api.client.constant.BinanceApiConstants;
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
+import com.faystmax.binance.api.client.domain.account.Account;
 import com.faystmax.binance.api.client.domain.error.BinanceApiError;
 import com.faystmax.binance.api.client.domain.trade.Trade;
 import com.faystmax.binance.api.client.exception.BinanceApiException;
@@ -76,6 +77,11 @@ public class BinanceApiClientImpl implements BinanceApiClient {
     @Override
     public List<Trade> getMyTrades(String symbol) {
         return execute(api.getMyTrades(symbol, System.currentTimeMillis()));
+    }
+
+    @Override
+    public Account getAccount() {
+        return execute(api.getAccount(System.currentTimeMillis()));
     }
 
     private <T> T execute(Call<T> call) {

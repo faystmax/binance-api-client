@@ -2,6 +2,7 @@ package com.faystmax.binance.api.client;
 
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
+import com.faystmax.binance.api.client.domain.account.Account;
 import com.faystmax.binance.api.client.domain.trade.Trade;
 
 import java.util.List;
@@ -38,4 +39,9 @@ public interface BinanceApiClient {
      * @return a list of trades
      */
     List<Trade> getMyTrades(String symbol);
+
+    /**
+     * Get current account information
+     */
+    Account getAccount();
 }

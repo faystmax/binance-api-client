@@ -1,5 +1,6 @@
 package com.faystmax.binance.api.client;
 
+import com.faystmax.binance.api.client.domain.account.Account;
 import com.faystmax.binance.api.client.domain.trade.Trade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
@@ -25,5 +26,11 @@ class BinanceApiClientPrivateRoutesTest {
     void getMyTrades_ok() {
         List<Trade> trades = apiClient.getMyTrades("ETHUSDT");
         assertNotNull(trades);
+    }
+
+    @Test
+    void getAccount_ok() {
+        Account account = apiClient.getAccount();
+        assertNotNull(account);
     }
 }
