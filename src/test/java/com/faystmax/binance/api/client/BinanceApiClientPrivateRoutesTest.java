@@ -1,4 +1,4 @@
-package com.faystmax.binance.api.client.impl;
+package com.faystmax.binance.api.client;
 
 import com.faystmax.binance.api.client.domain.trade.Trade;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,8 +10,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @Disabled
-class BinanceApiClientImplPrivateTest {
-    private static BinanceApiClientImpl apiClient;
+class BinanceApiClientPrivateRoutesTest {
+    private static BinanceApiClient apiClient;
 
     @BeforeAll
     public static void setUp() {

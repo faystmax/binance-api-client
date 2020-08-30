@@ -1,27 +1,31 @@
-package com.faystmax.binance.api.client.impl;
+package com.faystmax.binance.api.client;
 
-import com.faystmax.binance.api.client.BinanceApi;
-import com.faystmax.binance.api.client.BinanceApiClient;
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
+import com.faystmax.binance.api.client.domain.error.BinanceApiError;
 import com.faystmax.binance.api.client.domain.trade.Trade;
 import com.faystmax.binance.api.client.exception.BinanceApiException;
 import com.faystmax.binance.api.client.security.AuthenticationInterceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
+import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 public class BinanceApiClientImpl implements BinanceApiClient {
     private static final String BASE_URL = "https://api.binance.com/";
+
     private final BinanceApi api;
+    private final Converter<ResponseBody, BinanceApiError> errorConverter;
 
     public BinanceApiClientImpl(String apiKey, String secret, boolean enableLog) {
         var httpClient = new OkHttpClient.Builder();
@@ -33,12 +37,14 @@ public class BinanceApiClientImpl implements BinanceApiClient {
             httpClient.addInterceptor(logging);
         }
 
-        api = new Retrofit.Builder()
+        var retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient.build())
-            .build()
-            .create(BinanceApi.class);
+            .build();
+
+        api = retrofit.create(BinanceApi.class);
+        errorConverter = retrofit.responseBodyConverter(BinanceApiError.class, new Annotation[0]);
     }
 
     @Override
@@ -66,13 +72,15 @@ public class BinanceApiClientImpl implements BinanceApiClient {
         return execute(api.getMyTrades(symbol, System.currentTimeMillis()));
     }
 
+
     private <T> T execute(Call<T> call) {
         try {
             Response<T> response = call.execute();
             if (response.isSuccessful()) {
                 return response.body();
+            } else {
+                throw new BinanceApiException(errorConverter.convert(response.errorBody()));
             }
-            throw new BinanceApiException("Unsuccessful response: " + response);
         } catch (IOException e) {
             throw new BinanceApiException(e);
         }

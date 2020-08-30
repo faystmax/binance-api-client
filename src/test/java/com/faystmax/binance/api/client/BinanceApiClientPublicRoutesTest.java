@@ -1,4 +1,4 @@
-package com.faystmax.binance.api.client.impl;
+package com.faystmax.binance.api.client;
 
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BinanceApiClientImplPublicTest {
-    private static BinanceApiClientImpl apiClient;
+class BinanceApiClientPublicRoutesTest {
+    private static BinanceApiClient apiClient;
 
     @BeforeAll
     public static void setUp() {
