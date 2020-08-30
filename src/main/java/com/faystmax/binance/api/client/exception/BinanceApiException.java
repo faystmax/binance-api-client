@@ -11,12 +11,12 @@ public class BinanceApiException extends RuntimeException {
         super(message);
     }
 
+    public BinanceApiException(Throwable cause) {
+        super(cause);
+    }
+
     public BinanceApiException(BinanceApiError apiError) {
         super(apiError.getMsg());
         this.code = apiError.getCode();
-    }
-
-    public BinanceApiException(Throwable cause) {
-        super(cause);
     }
 }

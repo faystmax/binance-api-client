@@ -15,10 +15,10 @@ class BinanceApiClientPrivateRoutesTest {
 
     @BeforeAll
     public static void setUp() {
-        apiClient = new BinanceApiClientImpl(
+        apiClient = BinanceApiClientFactory.create(
             "", // place Api key here
-            "",  // place Secret key here
-            true);
+            ""  // place Secret key here
+        );
     }
 
     @Test

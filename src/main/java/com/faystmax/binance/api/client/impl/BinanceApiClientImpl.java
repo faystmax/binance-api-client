@@ -1,5 +1,8 @@
-package com.faystmax.binance.api.client;
+package com.faystmax.binance.api.client.impl;
 
+import com.faystmax.binance.api.client.BinanceApi;
+import com.faystmax.binance.api.client.BinanceApiClient;
+import com.faystmax.binance.api.client.constant.BinanceApiConstants;
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
 import com.faystmax.binance.api.client.domain.error.BinanceApiError;
@@ -22,11 +25,14 @@ import java.util.List;
 import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 public class BinanceApiClientImpl implements BinanceApiClient {
-    private static final String BASE_URL = "https://api.binance.com/";
-
     private final BinanceApi api;
     private final Converter<ResponseBody, BinanceApiError> errorConverter;
 
+    /**
+     * @param apiKey    binance API key
+     * @param secret    binance secret key
+     * @param enableLog enable log interceptor
+     */
     public BinanceApiClientImpl(String apiKey, String secret, boolean enableLog) {
         var httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(new AuthenticationInterceptor(apiKey, secret));
@@ -38,7 +44,7 @@ public class BinanceApiClientImpl implements BinanceApiClient {
         }
 
         var retrofit = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BinanceApiConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient.build())
             .build();
@@ -71,7 +77,6 @@ public class BinanceApiClientImpl implements BinanceApiClient {
     public List<Trade> getMyTrades(String symbol) {
         return execute(api.getMyTrades(symbol, System.currentTimeMillis()));
     }
-
 
     private <T> T execute(Call<T> call) {
         try {

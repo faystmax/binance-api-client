@@ -15,7 +15,7 @@ class BinanceApiClientPublicRoutesTest {
 
     @BeforeAll
     public static void setUp() {
-        apiClient = new BinanceApiClientImpl("", "", true);
+        apiClient = BinanceApiClientFactory.create();
     }
 
     @Test

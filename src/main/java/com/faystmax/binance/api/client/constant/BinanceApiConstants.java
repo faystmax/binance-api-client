@@ -5,6 +5,11 @@ package com.faystmax.binance.api.client.constant;
  */
 public class BinanceApiConstants {
     /**
+     * Base Binance Api url
+     */
+    public static final String BASE_URL = "https://api.binance.com/";
+
+    /**
      * HTTP Header to be used for API-KEY authentication
      */
     public static final String API_KEY_HEADER = "X-MBX-APIKEY";
