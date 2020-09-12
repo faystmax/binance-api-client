@@ -8,8 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.faystmax.binance.api.client.BinanceApiClientTestConstant.SYMBOL;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Tests private BinanceApi routes
+ * If you want ro run this tests you should specify api ans secret key and remove @Disabled
+ */
 @Disabled
 class BinanceApiClientPrivateRoutesTest {
     private static BinanceApiClient apiClient;
@@ -24,7 +29,7 @@ class BinanceApiClientPrivateRoutesTest {
 
     @Test
     void getMyTrades_ok() {
-        List<Trade> trades = apiClient.getMyTrades("ETHUSDT");
+        List<Trade> trades = apiClient.getMyTrades(SYMBOL);
         assertNotNull(trades);
     }
 

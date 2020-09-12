@@ -1,6 +1,7 @@
 package com.faystmax.binance.api.client;
 
 import com.faystmax.binance.api.client.domain.ExchangeInfo;
+import com.faystmax.binance.api.client.domain.TickerPrice;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
 import com.faystmax.binance.api.client.domain.account.Account;
 import com.faystmax.binance.api.client.domain.trade.Trade;
@@ -29,6 +30,7 @@ public interface BinanceApiClient {
      * Get 24 hour price change statistics
      *
      * @param symbol ticker symbol (e.g. ETHBTC)
+     * @return 24 hour price change statistics
      */
     TickerStatistics get24HrPriceStatistics(String symbol);
 
@@ -41,7 +43,13 @@ public interface BinanceApiClient {
     List<Trade> getMyTrades(String symbol);
 
     /**
-     * Get current account information
+     * @return current account information
      */
     Account getAccount();
+
+    /**
+     * @param symbol symbol ticker symbol (e.g. ETHBTC)
+     * @return latest symbol price
+     */
+    TickerPrice getLatestPrice(String symbol);
 }
