@@ -4,6 +4,8 @@ import com.faystmax.binance.api.client.domain.ExchangeInfo;
 import com.faystmax.binance.api.client.domain.TickerPrice;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
 import com.faystmax.binance.api.client.domain.account.Account;
+import com.faystmax.binance.api.client.domain.trade.NewOrder;
+import com.faystmax.binance.api.client.domain.trade.NewOrderResponse;
 import com.faystmax.binance.api.client.domain.trade.Trade;
 
 import java.util.List;
@@ -52,4 +54,20 @@ public interface BinanceApiClient {
      * @return latest symbol price
      */
     TickerPrice getLatestPrice(String symbol);
+
+    /**
+     * Send in a new order
+     *
+     * @param order the new order to submit
+     * @return a response containing details about the newly placed order
+     */
+    NewOrderResponse newOrder(NewOrder order);
+
+    /**
+     * Test new order creation and signature/recvWindow long
+     * Creates and validates a new order but does not send it into the matching engine
+     *
+     * @param order the new TEST order to submit
+     */
+    void newOrderTest(NewOrder order);
 }

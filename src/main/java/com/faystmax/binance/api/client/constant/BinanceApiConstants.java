@@ -19,4 +19,9 @@ public class BinanceApiConstants {
      */
     public static final String ENDPOINT_SECURITY_TYPE_SIGNED = "SIGNED";
     public static final String ENDPOINT_SECURITY_TYPE_SIGNED_HEADER = ENDPOINT_SECURITY_TYPE_SIGNED + ": #";
+
+    /**
+     * Default receiving window.
+     */
+    public static final long DEFAULT_RECEIVING_WINDOW = 60_000L;
 }
