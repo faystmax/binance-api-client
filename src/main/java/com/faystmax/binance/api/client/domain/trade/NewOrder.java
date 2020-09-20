@@ -57,15 +57,15 @@ public class NewOrder {
     /**
      * Set the response JSON. ACK, RESULT, or FULL; default: RESULT
      */
-    private NewOrderResponseType newOrderRespType = RESULT;
+    private NewOrderResponseType newOrderRespType;
     /**
      * Receiving window
      */
-    private Long recvWindow = DEFAULT_RECEIVING_WINDOW;
+    private Long recvWindow;
     /**
      * Order timestamp
      */
-    private long timestamp = System.currentTimeMillis();
+    private long timestamp;
 
     /**
      * Creates a new order with all required parameters
@@ -76,6 +76,9 @@ public class NewOrder {
         this.type = type;
         this.timeInForce = timeInForce;
         this.quantity = quantity;
+        this.newOrderRespType = RESULT;
+        this.recvWindow = DEFAULT_RECEIVING_WINDOW;
+        this.timestamp = System.currentTimeMillis();
     }
 
     /**
