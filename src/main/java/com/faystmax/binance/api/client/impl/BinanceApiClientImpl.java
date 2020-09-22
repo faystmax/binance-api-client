@@ -8,8 +8,10 @@ import com.faystmax.binance.api.client.domain.TickerPrice;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
 import com.faystmax.binance.api.client.domain.account.Account;
 import com.faystmax.binance.api.client.domain.error.BinanceApiError;
+import com.faystmax.binance.api.client.domain.request.AllOrdersRequest;
 import com.faystmax.binance.api.client.domain.trade.NewOrder;
 import com.faystmax.binance.api.client.domain.trade.NewOrderResponse;
+import com.faystmax.binance.api.client.domain.trade.Order;
 import com.faystmax.binance.api.client.domain.trade.Trade;
 import com.faystmax.binance.api.client.exception.BinanceApiException;
 import com.faystmax.binance.api.client.security.AuthenticationInterceptor;
@@ -106,6 +108,13 @@ public class BinanceApiClientImpl implements BinanceApiClient {
             order.getTimeInForce(), order.getQuantity(), order.getQuoteOrderQty(), order.getPrice(),
             order.getNewClientOrderId(), order.getStopPrice(), order.getIcebergQty(), order.getNewOrderRespType(),
             order.getRecvWindow(), order.getTimestamp()));
+    }
+
+    @Override
+    public List<Order> getAllOrders(AllOrdersRequest orderRequest) {
+        return execute(api.getAllOrders(orderRequest.getSymbol(),
+            orderRequest.getOrderId(), orderRequest.getStartTime(), orderRequest.getEndTime(),
+            orderRequest.getLimit(), orderRequest.getRecvWindow(), orderRequest.getTimestamp()));
     }
 
     private <T> T execute(Call<T> call) {
