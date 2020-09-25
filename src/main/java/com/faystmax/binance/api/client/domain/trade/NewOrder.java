@@ -99,6 +99,17 @@ public class NewOrder {
     }
 
     /**
+     * Places a MARKET buy order for the given quoteOrderQty
+     *
+     * @return a new order which is pre-configured with MARKET as the order type and BUY as the order side
+     */
+    public static NewOrder marketBuyQuoteQty(String symbol, BigDecimal quoteOrderQty) {
+        NewOrder newOrder = new NewOrder(symbol, OrderSide.BUY, OrderType.MARKET, null, null);
+        newOrder.setQuoteOrderQty(quoteOrderQty);
+        return newOrder;
+    }
+
+    /**
      * Places a MARKET sell order for the given quantity
      *
      * @return a new order which is pre-configured with MARKET as the order type and SELL as the order side
