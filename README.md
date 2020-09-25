@@ -8,6 +8,26 @@ Unofficial Java Api Client for <https://www.binance.com/> made with Retrofit 2.7
 Based on binance documentation <https://binance-docs.github.io/apidocs>
 and current existing Binance Java Api <https://github.com/binance-exchange/binance-java-api>.
 
+## Installation
+
+Add the JitPack repository to your build file
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Add dependency
+```groovy
+dependencies {
+    implementation 'com.github.faystmax:binance-api-client:1.0.0'
+}
+```
+
 ## Build
 To build this project run this from base directory:
 ```cmd
