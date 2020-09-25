@@ -1,5 +1,6 @@
 package com.faystmax.binance.api.client.security;
 
+import com.faystmax.binance.api.client.exception.HmacSHA256SignException;
 import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.Mac;
@@ -8,7 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * Utility class to sign messages using HMAC-SHA256
  */
-public class HmacSHA256Signer {
+public class HmacSHA256SignHelper {
     /**
      * Sign the given message using the given secret
      *
@@ -23,7 +24,7 @@ public class HmacSHA256Signer {
             sha256_HMAC.init(secretKeySpec);
             return new String(Hex.encodeHex(sha256_HMAC.doFinal(message.getBytes())));
         } catch (Exception e) {
-            throw new RuntimeException("Unable to sign message.", e);
+            throw new HmacSHA256SignException("Unable to sign message.", e);
         }
     }
 }

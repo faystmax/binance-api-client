@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static com.faystmax.binance.api.client.BinanceApiClientTestConstant.SYMBOL;
+import static com.faystmax.binance.api.client.BinanceApiClientTestConstants.SYMBOL;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -21,36 +22,36 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 @Disabled
 class BinanceApiClientPrivateRoutesTest {
+    public static final String API_KEY = ""; // Place Api key here
+    public static final String SECRET = "";  // Place Secret key here
+
     private static BinanceApiClient apiClient;
 
     @BeforeAll
     public static void setUp() {
-        apiClient = BinanceApiClientFactory.create(
-            "", // place Api key here
-            ""  // place Secret key here
-        );
+        apiClient = BinanceApiClientFactory.create(API_KEY, SECRET);
     }
 
     @Test
-    void getMyTrades_ok() {
+    void getMyTradesReturnNotNullTrades() {
         List<Trade> trades = apiClient.getMyTrades(SYMBOL);
         assertNotNull(trades);
     }
 
     @Test
-    void getAccount_ok() {
+    void getAccountReturnNotNullAccount() {
         Account account = apiClient.getAccount();
         assertNotNull(account);
     }
 
     @Test
-    void newOrderTest_ok() {
+    void newOrderTest() {
         NewOrder order = NewOrder.marketSell(SYMBOL, new BigDecimal("0.5"));
-        apiClient.newOrderTest(order);
+        assertDoesNotThrow(() -> apiClient.newOrderTest(order));
     }
 
     @Test
-    void getAllOrders_ok() {
+    void getAllOrdersReturnNotNullOrders() {
         List<Order> allOrders = apiClient.getAllOrders(new AllOrdersRequest(SYMBOL));
         assertNotNull(allOrders);
     }

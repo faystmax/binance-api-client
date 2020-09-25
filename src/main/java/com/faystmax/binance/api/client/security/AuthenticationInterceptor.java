@@ -34,7 +34,7 @@ public class AuthenticationInterceptor implements Interceptor {
 
             final String payload = original.url().query();
             if (!StringUtils.isEmpty(payload)) {
-                String signature = HmacSHA256Signer.sign(payload, secret);
+                String signature = HmacSHA256SignHelper.sign(payload, secret);
                 HttpUrl signedUrl = original.url().newBuilder().addQueryParameter("signature", signature).build();
                 newRequestBuilder.url(signedUrl);
             }

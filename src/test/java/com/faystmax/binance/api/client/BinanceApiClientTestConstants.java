@@ -1,5 +1,5 @@
 package com.faystmax.binance.api.client;
 
-class BinanceApiClientTestConstant {
+class BinanceApiClientTestConstants {
     public static final String SYMBOL = "ETHUSDT";
 }

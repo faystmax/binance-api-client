@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static com.faystmax.binance.api.client.BinanceApiClientTestConstant.SYMBOL;
+import static com.faystmax.binance.api.client.BinanceApiClientTestConstants.SYMBOL;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -24,30 +24,30 @@ class BinanceApiClientPublicRoutesTest {
     }
 
     @Test
-    void ping_ok() {
+    void ping() {
         apiClient.ping();
     }
 
     @Test
-    void getServerTime_ok() {
+    void getServerTimeReturnPositiveValue() {
         Long serverTime = apiClient.getServerTime();
         assertTrue(serverTime > 0);
     }
 
     @Test
-    void getExchangeInfo_ok() {
+    void getExchangeInfoReturnNotNullInfo() {
         ExchangeInfo exchangeInfo = apiClient.getExchangeInfo();
         assertNotNull(exchangeInfo);
     }
 
     @Test
-    void get24HrPriceStatistics_ok() {
+    void get24HrPriceStatisticsReturnPositiveLastPrice() {
         TickerStatistics statistics = apiClient.get24HrPriceStatistics(SYMBOL);
         assertTrue(statistics.getLastPrice().compareTo(BigDecimal.ZERO) > 0);
     }
 
     @Test
-    void getLatestPrice_ok() {
+    void getLatestPriceReturnPositiveValue() {
         TickerPrice price = apiClient.getLatestPrice(SYMBOL);
         assertTrue(price.getPrice().compareTo(BigDecimal.ZERO) > 0);
     }
