@@ -56,7 +56,7 @@ public class SymbolFilter {
      *
      * @see FilterType#LOT_SIZE
      */
-    private String stepSize;
+    private BigDecimal stepSize;
 
     /**
      * Defines the minimum notional value allowed for an order on a symbol. An order's notional value is the price * quantity
