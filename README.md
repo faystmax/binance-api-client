@@ -1,5 +1,6 @@
 # Binance Java Api Client
 
+[![JitPack](https://jitpack.io/v/faystmax/binance-api-client.svg)](https://jitpack.io/#faystmax/binance-api-client)
 [![Build](https://github.com/faystmax/binance-api-client/workflows/Build/badge.svg)](https://github.com/faystmax/binance-api-client/actions?query=workflow%3ABuild)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/44142f9dd06748ffa7a93b8432a306a8)](https://www.codacy.com/manual/faystmax/binance-api-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=faystmax/binance-api-client&amp;utm_campaign=Badge_Grade)
 [![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/faystmax/binance-api-client/blob/master/LICENSE.md)
@@ -30,11 +31,11 @@ dependencies {
 
 ## Build
 To build this project run this from base directory:
-```cmd
+```console
 ./gradlew clean build
 ```
 For windows users:
-```cmd
+```console
 gradlew.bat clean build
 ```
 
