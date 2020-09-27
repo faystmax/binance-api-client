@@ -25,7 +25,7 @@ allprojects {
 Add dependency
 ```groovy
 dependencies {
-    implementation 'com.github.faystmax:binance-api-client:1.0.1'
+    implementation 'com.github.faystmax:binance-api-client:1.0.2'
 }
 ```
 
