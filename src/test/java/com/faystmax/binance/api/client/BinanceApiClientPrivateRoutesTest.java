@@ -13,8 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static com.faystmax.binance.api.client.BinanceApiClientTestConstants.SYMBOL;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests private BinanceApi routes
@@ -36,6 +35,15 @@ class BinanceApiClientPrivateRoutesTest {
     void getMyTradesReturnNotNullTrades() {
         List<Trade> trades = apiClient.getMyTrades(SYMBOL);
         assertNotNull(trades);
+    }
+
+    @Test
+    void getMyTradesWithLimitReturnCorrectAmountOfTrades() {
+        int orderLimit = 1;
+        List<Trade> trades = apiClient.getMyTrades(SYMBOL, orderLimit);
+
+        assertNotNull(trades);
+        assertTrue(trades.size() <= orderLimit);
     }
 
     @Test

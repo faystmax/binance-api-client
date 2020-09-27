@@ -32,7 +32,7 @@ public interface BinanceApi {
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @GET("/api/v3/myTrades")
-    Call<List<Trade>> getMyTrades(@Query("symbol") String symbol, @Query("timestamp") Long timestamp);
+    Call<List<Trade>> getMyTrades(@Query("symbol") String symbol, @Query("limit") Integer limit, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @GET("/api/v3/account")

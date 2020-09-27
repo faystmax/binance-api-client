@@ -24,4 +24,9 @@ public class BinanceApiConstants {
      * Default receiving window.
      */
     public static final long DEFAULT_RECEIVING_WINDOW = 60_000L;
+
+    /**
+     * Default limit value
+     */
+    public static final Integer DEFAULT_LIMIT = 500;
 }

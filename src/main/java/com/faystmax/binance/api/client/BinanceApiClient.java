@@ -47,6 +47,15 @@ public interface BinanceApiClient {
     List<Trade> getMyTrades(String symbol);
 
     /**
+     * Get limited amount of trades for current account and symbol
+     *
+     * @param symbol symbol to get trades from
+     * @param limit  maximum orders amount to return
+     * @return a limited list of trades
+     */
+    List<Trade> getMyTrades(String symbol, Integer limit);
+
+    /**
      * @return current account information
      */
     Account getAccount();

@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.List;
 
+import static com.faystmax.binance.api.client.constant.BinanceApiConstants.DEFAULT_LIMIT;
 import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 public class BinanceApiClientImpl implements BinanceApiClient {
@@ -81,7 +82,12 @@ public class BinanceApiClientImpl implements BinanceApiClient {
 
     @Override
     public List<Trade> getMyTrades(String symbol) {
-        return execute(api.getMyTrades(symbol, System.currentTimeMillis()));
+        return execute(api.getMyTrades(symbol, DEFAULT_LIMIT, System.currentTimeMillis()));
+    }
+
+    @Override
+    public List<Trade> getMyTrades(String symbol, Integer limit) {
+        return execute(api.getMyTrades(symbol, limit, System.currentTimeMillis()));
     }
 
     @Override
