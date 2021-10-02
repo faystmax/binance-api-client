@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static com.faystmax.binance.api.client.BinanceApiClientTestConstants.SYMBOL;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -50,5 +51,11 @@ class BinanceApiClientPublicRoutesTest {
     void getLatestPriceReturnPositiveValue() {
         TickerPrice price = apiClient.getLatestPrice(SYMBOL);
         assertTrue(price.getPrice().compareTo(BigDecimal.ZERO) > 0);
+    }
+
+    @Test
+    void getAllLatestPriceReturnSizeGreaterThenZero() {
+        final List<TickerPrice> latestPrices = apiClient.getLatestPrice();
+        assertTrue(latestPrices.size() > 0);
     }
 }

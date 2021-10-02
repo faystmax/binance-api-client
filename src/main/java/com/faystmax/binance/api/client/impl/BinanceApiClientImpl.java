@@ -101,6 +101,11 @@ public class BinanceApiClientImpl implements BinanceApiClient {
     }
 
     @Override
+    public List<TickerPrice> getLatestPrice() {
+        return execute(api.getLatestPrice());
+    }
+
+    @Override
     public NewOrderResponse newOrder(NewOrder order) {
         return execute(api.newOrder(order.getSymbol(), order.getSide(), order.getType(),
             order.getTimeInForce(), order.getQuantity(), order.getQuoteOrderQty(), order.getPrice(),
@@ -119,6 +124,13 @@ public class BinanceApiClientImpl implements BinanceApiClient {
     @Override
     public List<Order> getAllOrders(AllOrdersRequest orderRequest) {
         return execute(api.getAllOrders(orderRequest.getSymbol(),
+            orderRequest.getOrderId(), orderRequest.getStartTime(), orderRequest.getEndTime(),
+            orderRequest.getLimit(), orderRequest.getRecvWindow(), orderRequest.getTimestamp()));
+    }
+
+    @Override
+    public List<Order> getAllMarginOrders(AllOrdersRequest orderRequest) {
+        return execute(api.getAllMarginOrders(orderRequest.getSymbol(),
             orderRequest.getOrderId(), orderRequest.getStartTime(), orderRequest.getEndTime(),
             orderRequest.getLimit(), orderRequest.getRecvWindow(), orderRequest.getTimestamp()));
     }

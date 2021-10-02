@@ -7,7 +7,12 @@ import com.faystmax.binance.api.client.domain.TickerPrice;
 import com.faystmax.binance.api.client.domain.TickerStatistics;
 import com.faystmax.binance.api.client.domain.account.Account;
 import com.faystmax.binance.api.client.domain.enums.OrderType;
-import com.faystmax.binance.api.client.domain.trade.*;
+import com.faystmax.binance.api.client.domain.trade.NewOrderResponse;
+import com.faystmax.binance.api.client.domain.trade.NewOrderResponseType;
+import com.faystmax.binance.api.client.domain.trade.Order;
+import com.faystmax.binance.api.client.domain.trade.OrderSide;
+import com.faystmax.binance.api.client.domain.trade.TimeInForce;
+import com.faystmax.binance.api.client.domain.trade.Trade;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -40,6 +45,9 @@ public interface BinanceApi {
 
     @GET("/api/v3/ticker/price")
     Call<TickerPrice> getLatestPrice(@Query("symbol") String symbol);
+
+    @GET("/api/v3/ticker/price")
+    Call<List<TickerPrice>> getLatestPrice();
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
     @POST("/api/v3/order")
@@ -78,4 +86,10 @@ public interface BinanceApi {
     Call<List<Order>> getAllOrders(@Query("symbol") String symbol, @Query("orderId") Long orderId,
                                    @Query("startTime") Long startTime, @Query("endTime") Long endTime,
                                    @Query("limit") Integer limit, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+
+    @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+    @GET("/sapi/v1/margin/allOrders")
+    Call<List<Order>> getAllMarginOrders(@Query("symbol") String symbol, @Query("orderId") Long orderId,
+                                         @Query("startTime") Long startTime, @Query("endTime") Long endTime,
+                                         @Query("limit") Integer limit, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 }

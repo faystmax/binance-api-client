@@ -67,6 +67,11 @@ public interface BinanceApiClient {
     TickerPrice getLatestPrice(String symbol);
 
     /**
+     * @return latest prices of all symbols
+     */
+    List<TickerPrice> getLatestPrice();
+
+    /**
      * Send in a new order
      *
      * @param order the new order to submit
@@ -89,4 +94,12 @@ public interface BinanceApiClient {
      * @return a list of all account orders
      */
     List<Order> getAllOrders(AllOrdersRequest orderRequest);
+
+    /**
+     * Get all margin account orders; active, canceled, or filled
+     *
+     * @param orderRequest order request parameters
+     * @return a list of all account orders
+     */
+    List<Order> getAllMarginOrders(AllOrdersRequest orderRequest);
 }
